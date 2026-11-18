@@ -129,18 +129,37 @@ class Program
                 telje.RemoveAt(telje.Count - 1);
             }
 
-            // TODO (feature/collision-gameover): kolizja ze ścianą i z samym sobą
+            // Kolizja ze ścianą
             if (hoofd.xPos <= 0 || hoofd.xPos >= screenwidth - 1 ||
                 hoofd.yPos <= 0 || hoofd.yPos >= screenheight - 1)
             {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Game Over");
-                Console.WriteLine("Twój wynik: " + score);
-                Environment.Exit(0);
+                GameOver(score, screenwidth, screenheight);
+            }
+
+            // Kolizja z własnym ciałem
+            for (int i = 0; i + 1 < telje.Count; i += 2)
+            {
+                if (hoofd.xPos == telje[i] && hoofd.yPos == telje[i + 1])
+                {
+                    GameOver(score, screenwidth, screenheight);
+                }
             }
 
             Thread.Sleep(50);
         }
+    }
+
+    static void GameOver(int score, int screenwidth, int screenheight)
+    {
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.SetCursorPosition(screenwidth / 5, screenheight / 2);
+        Console.WriteLine("Koniec gry");
+        Console.SetCursorPosition(screenwidth / 5, screenheight / 2 + 1);
+        Console.WriteLine("Twój wynik: " + score);
+        Console.SetCursorPosition(0, screenheight / 2 + 3);
+        Console.ResetColor();
+        Console.CursorVisible = true;
+        Environment.Exit(0);
     }
 }
