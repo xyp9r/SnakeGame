@@ -5,11 +5,16 @@ z pracy zdalnej w systemie Git i na GitHubie (gałęzie, pull requesty, recenzje
 
 ## Funkcje gry
 
-- sterowanie strzałkami (wąż porusza się sam, bez konieczności naciskania klawiszy),
+- tryb dla dwóch graczy na jednej klawiaturze:
+  - gracz 1 (czerwona głowa): strzałki,
+  - gracz 2 (niebieska głowa): klawisze `W` `A` `S` `D`,
+- węże poruszają się same, bez konieczności naciskania klawiszy,
 - zakaz zawracania o 180 stopni,
-- jedzenie (`*`) zwiększa liczbę punktów i wydłuża węża,
-- kolizja ze ścianą lub z własnym ciałem kończy grę,
-- wyświetlanie punktów oraz ekran końca gry.
+- jedzenie (`*`) jest wspólne: zwiększa punkty gracza, który je zjadł, i wydłuża jego węża,
+- gra przyspiesza wraz z wynikiem,
+- przegrywa ten, kto uderzy w ścianę, własne ciało lub ciało przeciwnika;
+  czołowe zderzenie oznacza remis,
+- wyświetlanie punktów obu graczy oraz ekran końca gry z wynikiem.
 
 ## Struktura projektu
 
@@ -52,3 +57,4 @@ Okno terminala powinno mieć co najmniej 32 kolumny i 16 wierszy.
 | `feature/collision-gameover` | kolizje i koniec gry |
 | `feature/second-snake` | drugi wąż (współpraca graczy) |
 | `docs/readme` | dokumentacja |
+| `fix/speed-up` | przyspieszanie gry (issue #5) |
