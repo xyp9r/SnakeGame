@@ -64,7 +64,10 @@ class Program
                 Console.Write("■");
             }
 
-            // TODO (feature/food-score): kolor i wyświetlanie punktów
+            // Wyświetlanie punktów pod planszą
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(0, screenheight - 1);
+            Console.Write("Punkty: " + score);
 
             // Rysowanie ciała
             Console.ForegroundColor = ConsoleColor.Green;
@@ -107,9 +110,16 @@ class Program
             if (movement == "LEFT") hoofd.xPos--;
             if (movement == "RIGHT") hoofd.xPos++;
 
-            // TODO (feature/food-score): zjadanie przeszkody, punkty i wzrost ogona
-            // Na razie wąż ma stałą długość 1 segmentu (obcinamy ogon).
-            while (telje.Count > 2)
+            // Zjadanie przeszkody: punkt, nowa pozycja jedzenia
+            if (hoofd.xPos == obstacle.Xpos && hoofd.yPos == obstacle.Ypos)
+            {
+                score++;
+                obstacle.Xpos = randomnummer.Next(1, screenwidth - 1);
+                obstacle.Ypos = randomnummer.Next(1, screenheight - 1);
+            }
+
+            // Długość ogona = 1 + liczba punktów (każdy segment to para x, y)
+            while (telje.Count > (score + 1) * 2)
             {
                 telje.RemoveAt(telje.Count - 1);
             }
