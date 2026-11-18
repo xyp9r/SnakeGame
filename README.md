@@ -1,0 +1,54 @@
+# SnakeGame
+
+Prosta gra Snake w konsoli napisana w C# (.NET). Projekt powstał jako ćwiczenie
+z pracy zdalnej w systemie Git i na GitHubie (gałęzie, pull requesty, recenzje, issues).
+
+## Funkcje gry
+
+- sterowanie strzałkami (wąż porusza się sam, bez konieczności naciskania klawiszy),
+- zakaz zawracania o 180 stopni,
+- jedzenie (`*`) zwiększa liczbę punktów i wydłuża węża,
+- kolizja ze ścianą lub z własnym ciałem kończy grę,
+- wyświetlanie punktów oraz ekran końca gry.
+
+## Struktura projektu
+
+| Plik | Opis |
+|---|---|
+| `Program.cs` | pętla gry, rysowanie, sterowanie, kolizje |
+| `Pixel.cs` | pozycja, kolor i znak elementu węża |
+| `Obstakel.cs` | pozycja, kolor i znak jedzenia |
+
+## Uruchamianie
+
+Wymagany jest [.NET SDK](https://dotnet.microsoft.com/download).
+
+```bash
+git clone https://github.com/xyp9r/SnakeGame.git
+cd SnakeGame
+dotnet run
+```
+
+Grę należy uruchamiać w prawdziwym terminalu (nie w oknie bez konsoli).
+Okno terminala powinno mieć co najmniej 32 kolumny i 16 wierszy.
+
+## Zasady współpracy
+
+1. `main` zawiera działającą wersję gry. Nie commitujemy do niej bezpośrednio.
+2. Każde zadanie realizujemy w osobnej gałęzi (`feature/...`, `docs/...`, `fix/...`).
+3. Po zakończeniu zadania tworzymy pull request do `main` z krótkim opisem zmian.
+4. Pull request przegląda druga osoba z zespołu: komentuje, sugeruje poprawki
+   i zatwierdza (approve). Dopiero wtedy następuje scalenie (merge).
+5. Po scaleniu wszyscy testują grę (`dotnet run`); błędy zgłaszamy jako issues.
+6. Pomysły i problemy zgłaszamy jako issues, przypisujemy do osoby odpowiedzialnej
+   i rozwiązujemy w osobnej gałęzi z pull requestem (`Closes #numer`).
+
+## Podział zadań
+
+| Gałąź | Zadanie |
+|---|---|
+| `feature/input-movement` | sterowanie i ruch węża |
+| `feature/food-score` | jedzenie, punkty, wzrost ogona |
+| `feature/collision-gameover` | kolizje i koniec gry |
+| `feature/second-snake` | drugi wąż (współpraca graczy) |
+| `docs/readme` | dokumentacja |
