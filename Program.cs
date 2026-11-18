@@ -79,23 +79,28 @@ class Program
             Console.SetCursorPosition(hoofd.xPos, hoofd.yPos);
             Console.Write(hoofd.karacter);
 
-            // TODO (feature/input-movement): sterowanie bez blokowania (KeyAvailable)
-            ConsoleKeyInfo info = Console.ReadKey(true);
-
-            switch (info.Key)
+            // Sterowanie bez blokowania: czytamy wszystkie naciśnięte klawisze,
+            // wąż porusza się dalej, nawet gdy nic nie naciskamy.
+            while (Console.KeyAvailable)
             {
-                case ConsoleKey.UpArrow:
-                    movement = "UP";
-                    break;
-                case ConsoleKey.DownArrow:
-                    movement = "DOWN";
-                    break;
-                case ConsoleKey.LeftArrow:
-                    movement = "LEFT";
-                    break;
-                case ConsoleKey.RightArrow:
-                    movement = "RIGHT";
-                    break;
+                ConsoleKeyInfo info = Console.ReadKey(true);
+
+                // Zakaz zawracania o 180 stopni
+                switch (info.Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        if (movement != "DOWN") movement = "UP";
+                        break;
+                    case ConsoleKey.DownArrow:
+                        if (movement != "UP") movement = "DOWN";
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        if (movement != "RIGHT") movement = "LEFT";
+                        break;
+                    case ConsoleKey.RightArrow:
+                        if (movement != "LEFT") movement = "RIGHT";
+                        break;
+                }
             }
 
             // Zapamiętaj starą pozycję głowy jako część ciała
