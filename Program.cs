@@ -145,7 +145,8 @@ class Program
                 }
             }
 
-            Thread.Sleep(50);
+            // Im więcej punktów, tym krótsza pauza (minimum 50 ms)
+            Thread.Sleep(Math.Max(50, 150 - score * 10));
         }
     }
 
